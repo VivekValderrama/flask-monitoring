@@ -1,4 +1,4 @@
-echo {
+{
     "Version": "2012-10-17",
     "Statement": [
         {
@@ -12,4 +12,4 @@ echo {
             "Action": "sts:AssumeRole"
         }
     ]
-} > updated-trust-policy.json
+}
