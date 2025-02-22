@@ -32,5 +32,5 @@ phases:
 
 artifacts:
   files:
-    - imagedefinitions.json
+    - /codebuild/output/imagedefinitions.json
   discard-paths: yes
