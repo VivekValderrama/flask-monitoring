@@ -1,0 +1,25 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_REGION: "us-east-1"
+    IMAGE_TAG: "latest"
+    ECR_REPOSITORY: "flask-monitoring-repo"
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 886436950565.dkr.ecr.$AWS_REGION.amazonaws.com
+
+  build:
+    commands:
+      - echo Building Docker image...
+      - docker build -t $ECR_REPOSITORY:$IMAGE_TAG .
+      - docker tag $ECR_REPOSITORY:$IMAGE_TAG 886436950565.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+
+  post_build:
+    commands:
+      - echo Pushing Docker image to Amazon ECR...
+      - docker push 886436950565.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+      - echo Build completed!
