@@ -25,7 +25,7 @@ phases:
       - docker push 886436950565.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
       - echo Build completed!
       - echo Creating imagedefinitions.json...
-      - echo '[{"name":"flask-service","imageUri":"886436950565.dkr.ecr.'$AWS_REGION'.amazonaws.com/'$ECR_REPOSITORY':'$IMAGE_TAG'"}]' > imagedefinitions.json
+      - echo '[{"name":"flask-container","imageUri":"886436950565.dkr.ecr.'$AWS_REGION'.amazonaws.com/'$ECR_REPOSITORY':'$IMAGE_TAG'"}]' > imagedefinitions.json
 
 artifacts:
   files:
