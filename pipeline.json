@@ -1,87 +1,36 @@
 {
-    "pipeline": {
-      "name": "flask-monitoring-pipeline",
-      "roleArn": "arn:aws:iam::886436950565:role/AWSCodePipelineServiceRole",
-      "artifactStore": {
+    "name": "flask-monitoring-pipeline",
+    "roleArn": "arn:aws:iam::886436950565:role/AWSCodePipelineServiceRole",
+    "artifactStore": {
         "type": "S3",
         "location": "flask-monitong-app-64648"
-      },
-      "stages": [
+    },
+    "stages": [
         {
-          "name": "Source",
-          "actions": [
-            {
-              "name": "SourceAction",
-              "actionTypeId": {
-                "category": "Source",
-                "owner": "AWS",
-                "provider": "CodeCommit",
-                "version": "1"
-              },
-              "configuration": {
-                "RepositoryName": "flask-monitoring-app",
-                "BranchName": "main"
-              },
-              "outputArtifacts": [
+            "name": "Source",
+            "actions": [
                 {
-                  "name": "SourceOutput"
+                    "name": "Source",
+                    "actionTypeId": {
+                        "category": "Source",
+                        "owner": "ThirdParty",
+                        "provider": "GitHub",
+                        "version": "1"
+                    },
+                    "configuration": {
+                        "Owner": "VivekValderrama",
+                        "Repo": "flask-monitoring",
+                        "Branch": "main",
+                        "OAuthToken": "{{resolve:ssm:GitHubToken}}"
+                    },
+                    "outputArtifacts": [
+                        {
+                            "name": "SourceArtifact"
+                        }
+                    ],
+                    "runOrder": 1
                 }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "Build",
-          "actions": [
-            {
-              "name": "BuildAction",
-              "actionTypeId": {
-                "category": "Build",
-                "owner": "AWS",
-                "provider": "CodeBuild",
-                "version": "1"
-              },
-              "configuration": {
-                "ProjectName": "flask-monitoring-build"
-              },
-              "inputArtifacts": [
-                {
-                  "name": "SourceOutput"
-                }
-              ],
-              "outputArtifacts": [
-                {
-                  "name": "BuildOutput"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "Deploy",
-          "actions": [
-            {
-              "name": "DeployAction",
-              "actionTypeId": {
-                "category": "Deploy",
-                "owner": "AWS",
-                "provider": "ECS",
-                "version": "1"
-              },
-              "configuration": {
-                "ClusterName": "flask-cluster",
-                "ServiceName": "flask-service",
-                "FileName": "imagedefinitions.json"
-              },
-              "inputArtifacts": [
-                {
-                  "name": "BuildOutput"
-                }
-              ]
-            }
-          ]
+            ]
         }
-      ]
-    }
-  }
-  
+    ]
+}
