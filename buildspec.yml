@@ -5,6 +5,7 @@ env:
     AWS_REGION: "us-east-1"
     IMAGE_TAG: "latest"
     ECR_REPOSITORY: "flask-monitoring-app"
+    CONTAINER_NAME: "flask-container"
 
 phases:
   pre_build:
