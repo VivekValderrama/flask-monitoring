@@ -21,7 +21,8 @@
                         "configuration": {
                             "Owner": "VivekValderrama",
                             "Repo": "flask-monitoring",
-                            "Branch": "main"
+                            "Branch": "main",
+                            "OAuthToken": "{{resolve:ssm:GitHubToken}}"
                         },
                         "outputArtifacts": [
                             {
