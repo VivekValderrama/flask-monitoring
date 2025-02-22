@@ -1,7 +1,0 @@
-[
-    {
-      "name": "flask-container",
-      "imageUri": "886436950565.dkr.ecr.us-east-1.amazonaws.com/flask-monitoring-app:latest"
-    }
-  ]
-  
