@@ -1,36 +1,38 @@
 {
-    "name": "flask-monitoring-pipeline",
-    "roleArn": "arn:aws:iam::886436950565:role/AWSCodePipelineServiceRole",
-    "artifactStore": {
-        "type": "S3",
-        "location": "flask-monitong-app-64648"
-    },
-    "stages": [
-        {
-            "name": "Source",
-            "actions": [
-                {
-                    "name": "Source",
-                    "actionTypeId": {
-                        "category": "Source",
-                        "owner": "ThirdParty",
-                        "provider": "GitHub",
-                        "version": "1"
-                    },
-                    "configuration": {
-                        "Owner": "VivekValderrama",
-                        "Repo": "flask-monitoring",
-                        "Branch": "main",
-                        "OAuthToken": "{{resolve:ssm:GitHubToken}}"
-                    },
-                    "outputArtifacts": [
-                        {
-                            "name": "SourceArtifact"
-                        }
-                    ],
-                    "runOrder": 1
-                }
-            ]
-        }
-    ]
+    "pipeline": {
+        "name": "flask-monitoring-pipeline",
+        "roleArn": "arn:aws:iam::886436950565:role/AWSCodePipelineServiceRole",
+        "artifactStore": {
+            "type": "S3",
+            "location": "flask-monitong-app-64648"
+        },
+        "stages": [
+            {
+                "name": "Source",
+                "actions": [
+                    {
+                        "name": "Source",
+                        "actionTypeId": {
+                            "category": "Source",
+                            "owner": "ThirdParty",
+                            "provider": "GitHub",
+                            "version": "1"
+                        },
+                        "configuration": {
+                            "Owner": "VivekValderrama",
+                            "Repo": "flask-monitoring",
+                            "Branch": "main",
+                            "OAuthToken": "{{resolve:ssm:GitHubToken}}"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "SourceArtifact"
+                            }
+                        ],
+                        "runOrder": 1
+                    }
+                ]
+            }
+        ]
+    }
 }
