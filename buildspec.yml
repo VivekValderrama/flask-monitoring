@@ -26,6 +26,7 @@ phases:
       - echo Build completed!
       - echo Creating imagedefinitions.json...
       - echo '[{"name":"flask-container","imageUri":"886436950565.dkr.ecr.'$AWS_REGION'.amazonaws.com/'$ECR_REPOSITORY':'$IMAGE_TAG'"}]' > imagedefinitions.json
+      - cat imagedefinitions.json
 
 artifacts:
   files:
