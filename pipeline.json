@@ -1,7 +1,7 @@
 {
     "pipeline": {
       "name": "flask-monitoring-pipeline",
-      "roleArn": "arn:aws:iam::886436950565:role/service-role/AWSCodePipelineServiceRole",
+      "roleArn": "arn:aws:iam::886436950565:role/AWSCodePipelineServiceRole",
       "artifactStore": {
         "type": "S3",
         "location": "flask-monitong-app-64648"
